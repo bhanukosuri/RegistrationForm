@@ -26,6 +26,7 @@ function showUserOnScreen(obj) {
   const parentElement = document.getElementById("listOfItems");
   const childElement = document.createElement("li");
   childElement.textContent = obj.name + " - " + obj.email + " - " + obj.phoneNumber;
+
   const deleteButton = document.createElement("input");
   deleteButton.type = "button";
   deleteButton.value = "Delete";
@@ -34,5 +35,19 @@ function showUserOnScreen(obj) {
     parentElement.removeChild(childElement);
   };
   childElement.appendChild(deleteButton);
+  parentElement.appendChild(childElement);
+
+  const editButton = document.createElement("input");
+  editButton.type = "button";
+  editButton.value = "Edit";
+  
+  editButton.onclick = () => {
+    document.getElementById("userName").value = obj.name
+    document.getElementById("emailId").value = obj.email
+    document.getElementById("phoneNumber").value = obj.phoneNumber
+    localStorage.removeItem(obj.email);
+    parentElement.removeChild(childElement);
+  };
+  childElement.appendChild(editButton);
   parentElement.appendChild(childElement);
 }
