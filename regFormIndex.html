@@ -1,37 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registration Form</title>
-  </head>
-  <body>
-    <header>
-      <h1>Registration Form</h1>
-    </header>
-    <section class="container">
-      <form id="my-form">
-        <h1>Register User</h1>
-        <div class="msg"></div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" />
-        <label for="email">Email:</label>
-        <input type="text" id="email" />
-        <label for="phoneNumber">Phone Number:</label>
-        <input type="text" id="phoneNumber" />
-        <input class="btn" type="submit" value="Submit" />
-      </form>
-
-      <ul id="users"></ul>
-
-      <!-- <ul class="items">
-        <li class="item">Item 1</li>
-        <li class="item">Item 2</li>
-        <li class="item">Item 3</li>
-      </ul> -->
-    </section>
-
-    <script src="regFormMain.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</Form></title>
+</head>
+<body>
+  <form>
+    <label for="userName">Name</label>
+    <input type="text" name="userName" id="userName"> <br><br>
+    <label for="emailId">Email</label>
+    <input type="email" name="emailId" id="emailId"> <br><br>
+    <label for="phoneNumber">Phone Number</label>
+    <input type="tel" name="phoneNumber" id="phoneNumber"> <br><br>
+    <button type="button" id="submit-btn">Submit</button>
+  </form>
+  <ul id="listOfItems"></ul>
+  <script src="regFormMain.js"></script>
+</body>
 </html>

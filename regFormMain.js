@@ -1,43 +1,38 @@
-const myForm = document.querySelector('#my-form');
-const nameInput = document.querySelector('#name');
-const emailInput = document.querySelector('#email');
-const phoneNumberInput = document.querySelector('#phoneNumber');
-const msg = document.querySelector('.msg');
-const userList = document.querySelector('#users');
+const submitBtn = document.getElementById("submit-btn")
 
-myForm.addEventListener('submit', onSubmit);
+submitBtn.addEventListener("click", saveToLocalStorage)
 
-function onSubmit(e) {
-  e.preventDefault();
-  if (
-    nameInput.value === '' ||
-    emailInput.value === '' ||
-    phoneNumberInput.value === ''
-  ) {
-    msg.textContent = 'Enter Valid Details';
-  } else {
-    msg.textContent = '';
+function saveToLocalStorage(event){
+  event.preventDefault();
+  const name = document.getElementById("userName").value;
+  const email = document.getElementById("emailId").value;
+  const phoneNumber = document.getElementById("phoneNumber").value;
 
-    let myObj = {
-      name: nameInput.value,
-      email: emailInput.value,
-      phonenumber: phoneNumberInput.value,
-    };
-    let myObj_serialized = JSON.stringify(myObj);
-    localStorage.setItem(emailInput.value, myObj_serialized);
-    let myObj_deserialized = JSON.parse(localStorage.getItem(emailInput.value));
-    userList.textContent = myObj_deserialized;
-
-    const li = document.createElement('li');
-    li.appendChild(
-      document.createTextNode(
-        `${myObj_deserialized.name} : ${myObj_deserialized.email} : ${myObj_deserialized.phonenumber}`
-      )
-    );
-    userList.appendChild(li);
-
-    nameInput.value = '';
-    emailInput.value = '';
-    phoneNumberInput.value = '';
+  const obj = {
+    name,
+    email,
+    phoneNumber
   }
+  
+  localStorage.setItem(email, JSON.stringify(obj));
+  showUserOnScreen(obj)
+  
+  document.getElementById("userName").value = ""
+  document.getElementById("emailId").value = ""
+  document.getElementById("phoneNumber").value = ""
+}
+
+function showUserOnScreen(obj) {
+  const parentElement = document.getElementById("listOfItems");
+  const childElement = document.createElement("li");
+  childElement.textContent = obj.name + " - " + obj.email + " - " + obj.phoneNumber;
+  const deleteButton = document.createElement("input");
+  deleteButton.type = "button";
+  deleteButton.value = "Delete";
+  deleteButton.onclick = () => {
+    localStorage.removeItem(obj.email);
+    parentElement.removeChild(childElement);
+  };
+  childElement.appendChild(deleteButton);
+  parentElement.appendChild(childElement);
 }
