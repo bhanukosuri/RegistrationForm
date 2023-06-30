@@ -114,10 +114,12 @@ function showUserOnScreen(obj) {
   editButton.value = "Edit";
 
   editButton.onclick = () => {
+    console.log(obj)
     document.getElementById("userName").value = obj.name
     document.getElementById("emailId").value = obj.email
     document.getElementById("phoneNumber").value = obj.phoneNumber
-    localStorage.removeItem(obj.email);
+    // localStorage.removeItem(obj.email);
+    base_url = "https://crudcrud.com/api/283d5151b2fc4d1abacb55940f4fcff8/appointmentData/"
     axios.delete(base_url + obj._id)
     parentElement.removeChild(childElement);
   };
